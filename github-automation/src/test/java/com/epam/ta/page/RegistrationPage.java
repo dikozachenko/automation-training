@@ -56,6 +56,7 @@ public class RegistrationPage extends AbstractPage {
     }
 
     public RegistrationPage registration(User user){
+        logger.info("Try registration");
         lastName.sendKeys(user.getLastName());
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(By.xpath(XPATH_FOR_INPUT_FIRST_NAME)));
         firstName.sendKeys(user.getFirstName());

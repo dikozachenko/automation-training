@@ -58,11 +58,13 @@ public class HomePage extends AbstractPage{
 
     @Override
     public HomePage openPage() {
+        logger.info("Opening home page");
         driver.get(MAIN_URL);
         return this;
     }
 
     public ResultSearchPage searchHotelsByParameters(SearchQuery query) {
+        logger.info("Try search hotel with correct parameters");
         place.sendKeys(query.getPlace());
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(By.xpath(XPATH_FOR_ARRIVAL_DATE)));
         arrivalDate.sendKeys(query.getArrivalDate());
@@ -80,6 +82,7 @@ public class HomePage extends AbstractPage{
     public HomePage searchHotelsByWrongParameters(SearchQuery query) {
         place.clear();
         place.sendKeys(query.getPlace());
+        logger.info("Try search hotel with incorrect parameters");
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(By.xpath(XPATH_FOR_ARRIVAL_DATE)));
         arrivalDate.sendKeys(query.getArrivalDate());
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.presenceOfElementLocated(By.xpath(XPATH_FOR_DEPARTURE_DATE)));
@@ -90,6 +93,7 @@ public class HomePage extends AbstractPage{
     }
 
     public String errorMessage(){
+        logger.info("Error message: {}", this.errorMessage.getText());
         return this.errorMessage.getText();
     }
 

@@ -16,6 +16,7 @@ public class ResultSearchPage extends AbstractPage {
         super(driver);
         this.query = query;
         PageFactory.initElements(driver, this);
+        logger.info("Opening search page");
     }
 
     @Override

@@ -34,4 +34,18 @@ public class SearchHotelTest extends CommonConditions {
         assertThat(errorMessageDueToIncorrectCity, is(expected));
     }
 
+    @Test
+    public void withoutIncorrectDate() {
+        String expected = "Некорректное число или возраст гостей";
+        SearchQuery hotelTerms = SearchQueryCreator.withIncorrectDate();
+        String errorMessageDueToIncorrectCity = new HomePage(driver)
+                .openPage()
+                .searchHotelsByWrongParameters(hotelTerms)
+                .errorMessage();
+
+        assertThat(errorMessageDueToIncorrectCity, is(expected));
+    }
+
+
+
 }
